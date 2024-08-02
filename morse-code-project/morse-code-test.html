@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="morse-test.css">
+    <title>Take a Quiz!</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="morse-code-explanation.html" class="button">What is Morse Code?</a></li>
+                <li><a href="morse-code-pract.html" class="button">Practice</a></li>
+                <li><a href="morse-code-test.html" class="button">Test Yourself!</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <div id="startScreen" class="screen active">
+            <h1>Welcome to the Morse Code Test</h1>
+            <button id="startButton">Start Game</button>
+        </div>
+
+        <div id="gameScreen" class="screen">
+            <div class="header">
+                <h1>Morse Code Test</h1>
+                <div class="timer">Time left: <span id="timeLeft">60</span> sec</div>
+                <div class="score">Score: <span id="score">0</span></div>
+            </div>
+            <div class="morse-display" id="morseDisplay">...</div>
+            <input type="text" id="textInput" placeholder="Translate here...">
+            <div class="buttons">
+                <button id="submitButton">Submit</button>
+                <button id="skipButton">Skip</button>
+                <button id="quitButton">Quit</button>
+            </div>
+            <div id="result"></div>
+        </div>
+
+        <div id="endScreen" class="screen">
+            <h1>Game Over</h1>
+            <p>Your Score: <span id="finalScore"></span></p>
+            <button id="restartButton">Restart Game</button>
+        </div>
+    </div>
+
+    <script src="morse-test.js"></script>
+</body>
+</html>
