@@ -42,6 +42,8 @@ const morseCodeMap = {
 let currentWord = "";
 let wordsList = [];
 let score = 0;
+let scores = [4, 5, 2, 4];  //dummy scores for test purpose
+let highScoreTracker = 0
 let timeLeft = 60;
 let timer;
 
@@ -68,13 +70,15 @@ function initGame() {
     document.getElementById('quitButton').addEventListener('click', quitGame);
 
     // Event listener for the restart button
-    document.getElementById('restartButton').addEventListener('click', () => location.reload());
+    document.getElementById('restartButton').addEventListener('click', startGame);
 }
 
 function startGame() {
     document.getElementById('startScreen').classList.remove('active');
     document.getElementById('gameScreen').classList.add('active');
+    document.getElementById('endScreen').classList.remove('active');
     score = 0;
+    timeLeft = 60;
     updateScore();
     startTimer();
     displayRandomMorse();
@@ -91,10 +95,19 @@ function startTimer() {
 }
 
 function endGame() {
+    
     clearInterval(timer);
     document.getElementById('gameScreen').classList.remove('active');
     document.getElementById('endScreen').classList.add('active');
     document.getElementById('finalScore').textContent = score;
+    scores.push(score)
+    console.log(scores)
+    for (i=0; i < scores.length; i++) {
+        if (highScoreTracker < scores[i]) {
+            highScoreTracker = scores[i]
+        }
+    }
+    updateHScore();
 }
 
 function displayRandomMorse() {
@@ -119,14 +132,16 @@ function checkAnswer() {
     if (userInput === currentWord) {
         score++;
         updateScore();
+        
         resultDisplay.textContent = "Correct!";
         resultDisplay.style.color = "green";
         setTimeout(() => {
             resultDisplay.textContent = '';
             displayRandomMorse();
             document.getElementById('textInput').value = '';
-        }, 2000);
-    } else {
+        }, 1000);
+    } 
+    else {
         resultDisplay.textContent = "Incorrect! Try again or skip.";
         resultDisplay.style.color = "red";
     }
@@ -149,6 +164,10 @@ function quitGame() {
 function updateScore() {
     document.getElementById('score').textContent = score;
 }
+function updateHScore() {
+    document.getElementById('hScore').textContent = highScoreTracker;
+}
+
 
 
 

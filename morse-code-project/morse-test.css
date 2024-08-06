@@ -116,9 +116,13 @@ button:hover {
     margin-bottom: 20px;
 }
 
-.timer, .score {
+.timer, .score, .hScore{
     font-size: 18px;
     font-weight: bold;
+    border: 1px black solid;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
 }
 
 .buttons {
